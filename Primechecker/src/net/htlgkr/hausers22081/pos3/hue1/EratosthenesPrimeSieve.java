@@ -1,8 +1,6 @@
 package net.htlgkr.hausers22081.pos3.hue1;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 public class EratosthenesPrimeSieve implements PrimeSieve{
 
@@ -29,7 +27,7 @@ public class EratosthenesPrimeSieve implements PrimeSieve{
 
             if (areNumbersPrimes[i]) {
 
-                for (int j = i*i; j <= upperBound; j++) {
+                for (int j = i*i; j <= upperBound; j += i) {
                     areNumbersPrimes[j] = false;
                 }
             }
