@@ -6,19 +6,26 @@ import java.util.Map;
 
 public class EratosthenesPrimeSieve implements PrimeSieve{
 
-
     public EratosthenesPrimeSieve(int upperBound) {
-        // length = upperBound - 2 -> because then areNumbersPrimes[0] =^ 2;
-        boolean[] areNumbersPrimes = new boolean[upperBound - 2];
+        // length = upperBound - 1 -> because then areNumbersPrimes[2] =^ 2;
+        boolean[] areNumbersPrimes = new boolean[upperBound + 1];
 
         // at beginning every number is a Prime and they get false when they are the product of another number
         fillArrayWithTrue(areNumbersPrimes);
 
-        makeAllNumbersThatAreNotPrimesFalse(areNumbersPrimes);
+        makeAllNumbersThatAreNotPrimesFalse(areNumbersPrimes, upperBound);
     }
 
-    private void makeAllNumbersThatAreNotPrimesFalse(boolean[] areNumbersPrimes) {
-        
+    private void makeAllNumbersThatAreNotPrimesFalse(boolean[] areNumbersPrimes, int upperBound) {
+        for (int i = 2; i < Math.sqrt(upperBound); i++) {
+
+            if (areNumbersPrimes[i]) {
+
+                for (int j = i*i; j <= upperBound; j++) {
+                    areNumbersPrimes[j] = false;
+                }
+            }
+        }
     }
 
     private void fillArrayWithTrue(boolean[] array) {
